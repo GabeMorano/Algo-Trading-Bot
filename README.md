@@ -96,4 +96,4 @@ Here is the graph of our Actual Returns vs. Strategy Returns
 As you can see, the Logistic Regression Model strategy outperforms our Actual Returns by a small percentage. This means that the Logistic Regression Model is our best bet of the trials undergone in this project.
 
 ## Conclusion
-After several trials adjusting our input features for out machine learning algorithm, the Logistic Regression Model with 8 months of training data is our best fit. It is the only model tested in this project which consistently outperforms our actual data and is the best bet to deploy into actual use.
+After several trials adjusting our input features for out machine learning algorithm, the SVC Model with 8 months of training data is our best fit. It is the only model tested in this project which consistently outperforms our actual data by the widest margin, despite the poor recall scores.
