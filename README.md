@@ -3,7 +3,7 @@ This project seeks to optimize the performance of a machine learning algo-tradin
 
 ## Tuning Steps
 ### Tuning training data
-In an effort to improve our model scores, the DateOffset parameter was changed from 3 months to 6. In effect, doubling the amount of training data for our model.
+In an effort to improve our model scores, the DateOffset parameter was changed from 3 months to 8. In effect, doubling the amount of training data for our model.
 
 Also, the short_window and long_window were increased from 4 and 100 respectively, to 10 and 200. This increases the SMA input features for our model in an effort to increase the model's scores.
 
@@ -26,21 +26,20 @@ Here is the Classification Report with our adjusted Training data.
 
               precision    recall  f1-score   support
 
-        -1.0       0.44      0.02      0.04      1732
-         1.0       0.56      0.98      0.71      2211
+        -1.0       0.43      0.16      0.24      1670
+         1.0       0.56      0.83      0.67      2142
 
-    accuracy                           0.56      3943
-   macro avg       0.50      0.50      0.38      3943
-weighted avg       0.51      0.56      0.42      3943
+    accuracy                           0.54      3812
+   macro avg       0.50      0.50      0.45      3812
+weighted avg       0.50      0.54      0.48      3812
 
-As you can see, a small positive impact on precision and recall were observed.
+As seen above, increasing the amount of traning data from 3 to 8 months helps to improve our recall score for selling orders (-1.0). Despite the slight decrease in accuracy score, this change provides a more balanced fit for our model.
 
 Here is the graph of our Cumulative Actual Return vs. Strategy Returns.
 
-![cumulative_returns_comparison](https://github.com/GabeMorano/Algo-Trading-Bot/assets/160795583/90515223-ec3c-46b2-95fb-83a29eb5a44f)
+![cumulative_returns_comparison](https://github.com/GabeMorano/Algo-Trading-Bot/assets/160795583/88ae9acc-82ce-4a93-a494-c341df6f776f)
 
-
-This model strategy, despite its shortcomings in identifying accurate sell opportunities in precision and recall, outperforms our actual returns.
+This graph shows the impact of our low recall score, the missed selling opportunities is depicted when the strategy returns dip below the actual returns, meaning our model missed selling opportunities.
 
 #### What impact resulted from increasing or decreasing the SMA Windows?
 Adjusting the SMA windows does not seem to significant impact the model one way or the other. Here is our Classification Report with a short_window of 6 and long_window of 120:
@@ -78,22 +77,21 @@ To add additional context to understanding our model. We tried a new Machine Lea
 
               precision    recall  f1-score   support
 
-        -1.0       0.43      0.16      0.24      1670
-         1.0       0.56      0.83      0.67      2142
+        -1.0       0.56      0.02      0.04      1670
+         1.0       0.56      0.99      0.72      2142
 
-    accuracy                           0.54      3812
-   macro avg       0.50      0.50      0.45      3812
-weighted avg       0.50      0.54      0.48      3812
+    accuracy                           0.56      3812
+   macro avg       0.56      0.50      0.38      3812
+weighted avg       0.56      0.56      0.42      3812
 
-As seen above, the Logistic Regression model provides a more balanced fit for training on our data.
+As seen above, the Logistic Regression model provides a more balanced fit for training on our data in terms of precision, but sacrifies much of the recall.
 
 Here is the graph of our Actual Returns vs. Strategy Returns
 
-![Adjusted_cumulative_returns_comparison](https://github.com/GabeMorano/Algo-Trading-Bot/assets/160795583/a052a200-068f-4d2c-94f7-61ca5adc1a9b)
-
+![Adjusted_cumulative_returns_comparison](https://github.com/GabeMorano/Algo-Trading-Bot/assets/160795583/5d93b991-b9ba-4547-8965-360f48ca04d1)
 
 
 As you can see, the Logistic Regression Model strategy outperforms our Actual Returns by a small percentage. This means that the Logistic Regression Model is our best bet of the trials undergone in this project.
 
 ## Conclusion
-After several trials adjusting our input features for out machine learning algorithm, the SVC Model with 8 months of training data is our best fit. It is the only model tested in this project which consistently outperforms our actual data by the widest margin, despite the poor recall scores.
+After several trials adjusting our input features for out machine learning algorithm, the Logistic Regression Model with 8 months of training data is our best fit. It is the only model tested in this project which consistently outperforms our actual data by the widest margin, despite the poor recall scores.
