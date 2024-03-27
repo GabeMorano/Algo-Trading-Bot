@@ -13,42 +13,46 @@ Increasing the training window of our model impacted the precision score of our 
 
 Here is the base line Classification Report
 
-          precision    recall  f1-score   support
+              precision    recall  f1-score   support
 
-    -1.0       0.43      0.04      0.07      1804
-     1.0       0.56      0.96      0.71      2288
+        -1.0       0.43      0.04      0.07      1804
+         1.0       0.56      0.96      0.71      2288
 
-accuracy                           0.55      4092
-macro avg 0.49 0.50 0.39 4092 weighted avg 0.50 0.55 0.43 4092
+    accuracy                           0.55      4092
+   macro avg       0.49      0.50      0.39      4092
+weighted avg       0.50      0.55      0.43      4092
 
 Here is the Classification Report with our adjusted Training data.
 
-          precision    recall  f1-score   support
+              precision    recall  f1-score   support
 
-    -1.0       0.52      0.03      0.06      1732
-     1.0       0.56      0.98      0.71      2211
+        -1.0       0.44      0.02      0.04      1732
+         1.0       0.56      0.98      0.71      2211
 
-accuracy                           0.56      3943
-macro avg 0.54 0.50 0.39 3943 weighted avg 0.54 0.56 0.43 3943
+    accuracy                           0.56      3943
+   macro avg       0.50      0.50      0.38      3943
+weighted avg       0.51      0.56      0.42      3943
 
-As you can see, no significant impact was made on accuracy, or recall. We did see an increase in precision of 0.9 which is an overall improvement considering the stability of other factors.
+As you can see, a small positive impact on precision and recall were observed.
 
 Here is the graph of our Cumulative Actual Return vs. Strategy Returns.
 
+![cumulative_returns_comparison](https://github.com/GabeMorano/Algo-Trading-Bot/assets/160795583/90515223-ec3c-46b2-95fb-83a29eb5a44f)
 
 
-This model is a poor fit due to the irratic underperformance of our strategy returns vs. actual returns.
+This model strategy, despite its shortcomings in identifying accurate sell opportunities in precision and recall, outperforms our actual returns.
 
 #### What impact resulted from increasing or decreasing the SMA Windows?
 Adjusting the SMA windows does not seem to significant impact the model one way or the other. Here is our Classification Report with a short_window of 6 and long_window of 120:
 
-          precision    recall  f1-score   support
+              precision    recall  f1-score   support
 
-    -1.0       0.47      0.03      0.05      1793
-     1.0       0.56      0.97      0.71      2284
+        -1.0       0.42      0.01      0.02      1722
+         1.0       0.56      0.99      0.72      2196
 
-accuracy                           0.56      4077
-macro avg 0.51 0.50 0.38 4077 weighted avg 0.52 0.56 0.42 4077
+    accuracy                           0.56      3918
+   macro avg       0.49      0.50      0.37      3918
+weighted avg       0.50      0.56      0.41      3918
 
 As you can see, adjusting the SMA does not significantly impact the Report. Increasing the training data size remains our best option for improving the model's scores.
 
@@ -72,15 +76,20 @@ Our Precision scores are more balanced, though still not ideal. 0.56 precision f
 ### Using a New Model
 To add additional context to understanding our model. We tried a new Machine Learning Classifier. Specifically, we implemented a Logistic Regression. This improved the model's scores on the Classification Report:
 
-          precision    recall  f1-score   support
+              precision    recall  f1-score   support
 
-    -1.0       0.56      0.02      0.04      1670
-     1.0       0.56      0.99      0.72      2142
+        -1.0       0.43      0.16      0.24      1670
+         1.0       0.56      0.83      0.67      2142
 
-accuracy                           0.56      3812
-macro avg 0.56 0.50 0.38 3812 weighted avg 0.56 0.56 0.42 3812
+    accuracy                           0.54      3812
+   macro avg       0.50      0.50      0.45      3812
+weighted avg       0.50      0.54      0.48      3812
+
+As seen above, the Logistic Regression model provides a more balanced fit for training on our data.
 
 Here is the graph of our Actual Returns vs. Strategy Returns
+
+![Adjusted_cumulative_returns_comparison](https://github.com/GabeMorano/Algo-Trading-Bot/assets/160795583/a052a200-068f-4d2c-94f7-61ca5adc1a9b)
 
 
 
